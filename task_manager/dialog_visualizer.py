@@ -54,7 +54,6 @@ class DialogVisualizer:
             delete_button = tk.Button(dialog, text='Delete')
             delete_button.grid(row=4, column=2, columnspan=2, pady=10)
 
-        # Возврат всех элементов
         return dialog, {
             "title_entry": title_entry,
             "description_text": description_text,

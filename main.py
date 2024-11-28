@@ -7,7 +7,7 @@ def main():
     Создаёт главное окно tkinter и запускает приложение.
     """
     root = tk.Tk()
-    app = TaskManagerApp(root)
+    TaskManagerApp(root)
     root.mainloop()
 
 if __name__ == '__main__':

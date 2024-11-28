@@ -5,7 +5,7 @@ from .task_dialog import TaskDialog
 
 class TaskManagerUI:
     """
-    Класс TaskManagerUI отвечает за графический интерфейс приложения.
+    Класс TaskManagerUI отвечает за графический интерфейс.
 
     :param root: Главный tkinter-контейнер.
     :param task_list: Список задач (объект класса TaskList).
