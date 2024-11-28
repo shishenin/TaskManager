@@ -1,11 +1,21 @@
-# task_manager/ui.py
-
 import tkinter as tk
 from tkinter import ttk, messagebox
 from .task_dialog import TaskDialog
 
+
 class TaskManagerUI:
+    """
+    Класс TaskManagerUI отвечает за графический интерфейс приложения.
+
+    :param root: Главный tkinter-контейнер.
+    :param task_list: Список задач (объект класса TaskList).
+    :param update_task_list_callback: Функция обратного вызова для обновления списка задач.
+    """
+
     def __init__(self, root, task_list, update_task_list_callback):
+        """
+        Инициализация интерфейса TaskManagerUI.
+        """
         self.root = root
         self.task_list = task_list
         self.update_task_list_callback = update_task_list_callback
@@ -13,6 +23,9 @@ class TaskManagerUI:
         self.setup_ui()
 
     def setup_ui(self):
+        """
+        Настраивает основные элементы графического интерфейса.
+        """
         self.frame = tk.Frame(self.root)
         self.frame.pack(fill=tk.BOTH, expand=1)
 
@@ -49,9 +62,17 @@ class TaskManagerUI:
         self.delete_button.pack(side=tk.LEFT, padx=5, pady=5)
 
     def add_task(self):
+        """
+        Открывает окно добавления новой задачи.
+        """
         TaskDialog(self.root, self.task_list, self.update_task_list_callback)
 
     def edit_task(self, event):
+        """
+        Открывает окно редактирования выбранной задачи.
+
+        :param event: Событие tkinter.
+        """
         selected_item = self.tree.selection()
         if selected_item:
             index = int(selected_item[0])
@@ -61,6 +82,11 @@ class TaskManagerUI:
             messagebox.showwarning('Warning', 'Select a task to edit.')
 
     def delete_task(self, event=None):
+        """
+        Удаляет выбранную задачу из списка.
+
+        :param event: Событие tkinter (по умолчанию None).
+        """
         selected_item = self.tree.selection()
         if selected_item:
             index = int(selected_item[0])
@@ -70,6 +96,11 @@ class TaskManagerUI:
             messagebox.showwarning('Warning', 'Select a task to delete.')
 
     def toggle_task_completion(self, event):
+        """
+        Переключает статус выполнения задачи.
+
+        :param event: Событие tkinter.
+        """
         selected_item = self.tree.selection()
         if selected_item:
             index = int(selected_item[0])
@@ -81,6 +112,9 @@ class TaskManagerUI:
                 self.update_task_list_callback()
 
     def update_task_list(self):
+        """
+        Обновляет отображение списка задач в интерфейсе.
+        """
         for item in self.tree.get_children():
             self.tree.delete(item)
 
@@ -90,6 +124,11 @@ class TaskManagerUI:
             self.tree.insert('', 'end', iid=index, values=(completed, task.title, deadline))
 
     def sort_tasks(self, key):
+        """
+        Сортирует список задач по указанному ключу.
+
+        :param key: Ключ для сортировки.
+        """
         reverse = False
         if key == 'completed':
             self.task_list.tasks.sort(key=lambda task: task.completed, reverse=reverse)

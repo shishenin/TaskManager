@@ -1,9 +1,11 @@
-# main.py
-
 import tkinter as tk
 from task_manager.app import TaskManagerApp
 
 def main():
+    """
+    Основная точка входа в приложение Task Manager.
+    Создаёт главное окно tkinter и запускает приложение.
+    """
     root = tk.Tk()
     app = TaskManagerApp(root)
     root.mainloop()
